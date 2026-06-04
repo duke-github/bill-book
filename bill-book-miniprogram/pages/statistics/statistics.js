@@ -137,39 +137,19 @@ Page({
   },
 
   openDetail() {
-    const pages = getCurrentPages()
-    if (pages.length > 1) {
-      wx.navigateBack()
-      return
-    }
     wx.redirectTo({
       url: '/pages/detail/detail'
     })
   },
 
   openAdd() {
-    const pages = getCurrentPages()
-    if (pages.length <= 1) {
-      wx.redirectTo({
-        url: '/pages/detail/detail?openAdd=1'
-      })
-      return
-    }
-    wx.navigateBack({
-      success() {
-        setTimeout(() => {
-          const pages = getCurrentPages()
-          const detailPage = pages[pages.length - 1]
-          if (detailPage && detailPage.openAdd) {
-            detailPage.openAdd()
-          }
-        }, 50)
-      }
+    wx.redirectTo({
+      url: '/pages/detail/detail?openAdd=1'
     })
   },
 
   openSettings() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/settings/settings'
     })
   }

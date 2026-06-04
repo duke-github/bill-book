@@ -10,10 +10,17 @@ import java.util.Optional;
 @Repository
 public class MonthlyBudgetRepository {
 
+    private static final int GLOBAL_YEAR = 0;
+    private static final int GLOBAL_MONTH = 0;
+
     private final MonthlyBudgetMapper mapper;
 
     public MonthlyBudgetRepository(MonthlyBudgetMapper mapper) {
         this.mapper = mapper;
+    }
+
+    public Optional<MonthlyBudgetEntity> findGlobalByUser(Long userId) {
+        return findByUserYearMonth(userId, GLOBAL_YEAR, GLOBAL_MONTH);
     }
 
     public Optional<MonthlyBudgetEntity> findByUserYearMonth(Long userId, int year, int month) {

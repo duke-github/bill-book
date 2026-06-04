@@ -1,14 +1,14 @@
 <view class="stats-page">
   <view class="stats-header">
     <view class="year-switch">
-      <view class="year-btn" bindtap="prevYear">&#8249;</view>
+      <view class="year-btn" bindtap="prevYear">‹</view>
       <view class="year-label">{{year}}年</view>
-      <view class="year-btn" bindtap="nextYear">&#8250;</view>
+      <view class="year-btn" bindtap="nextYear">›</view>
     </view>
   </view>
 
   <view class="summary-card" style="background: {{themeColor}}">
-    <view class="summary-mark">&#165;</view>
+    <view class="summary-mark">¥</view>
     <view class="summary-label">结余</view>
     <view class="summary-balance">{{totalBalance}}</view>
     <view class="summary-row">
@@ -51,21 +51,25 @@
   </scroll-view>
 
   <view class="bottom-bar">
-    <view class="nav-item" bindtap="openDetail">
-      <view class="nav-icon">&#9776;</view>
-      <view>明细</view>
+    <view class="tab-group left-group">
+      <view class="nav-item" bindtap="openDetail">
+        <view class="nav-icon">☰</view>
+        <view>明细</view>
+      </view>
+      <view class="nav-item active">
+        <view class="nav-icon">◉</view>
+        <view>统计</view>
+      </view>
     </view>
-    <view class="nav-item add-item" bindtap="openAdd">
+    <view class="add-item" bindtap="openAdd">
       <view class="add-btn" style="background: {{buttonColor}}">+</view>
       <view>记账</view>
     </view>
-    <view class="nav-item active">
-      <view class="nav-icon">&#9637;</view>
-      <view>统计</view>
-    </view>
-    <view class="nav-item" bindtap="openSettings">
-      <view class="nav-icon">&#9881;</view>
-      <view>设定</view>
+    <view class="tab-group right-group">
+      <view class="nav-item" bindtap="openSettings">
+        <view class="nav-icon">⚙</view>
+        <view>设定</view>
+      </view>
     </view>
   </view>
 </view>

@@ -276,7 +276,7 @@ Page({
 
   loadBudget(year, month) {
     request({
-      url: `/budgets?year=${year}&month=${month}`,
+      url: `/budgets`,
       silent: true
     }).then(data => {
       const budget = data && data.amount ? Number(data.amount) : null
@@ -407,13 +407,13 @@ Page({
   },
 
   openStatistics() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/statistics/statistics'
     })
   },
 
   openSettings() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/settings/settings'
     })
   },

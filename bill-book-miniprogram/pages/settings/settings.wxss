@@ -37,7 +37,8 @@
 .color-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 24rpx;
+  gap: 40rpx 32rpx;
+  padding-bottom: 48rpx;
 }
 
 .color-option {
@@ -80,15 +81,6 @@
   gap: 16rpx;
 }
 
-.budget-date {
-  padding: 16rpx 20rpx;
-  background: #f3f4f6;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  color: #111827;
-  white-space: nowrap;
-}
-
 .budget-input {
   flex: 1;
   height: 64rpx;
@@ -116,11 +108,24 @@
   left: 0;
   z-index: 20;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-end;
   height: 136rpx;
   padding-bottom: env(safe-area-inset-bottom);
   background: #fff;
+}
+
+.tab-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.left-group {
+  justify-content: space-evenly;
+}
+
+.right-group {
+  justify-content: space-evenly;
 }
 
 .nav-item {
@@ -144,25 +149,30 @@
   line-height: 42rpx;
 }
 
+.add-item {
+  width: 150rpx;
+  color: #111827;
+  font-size: 22rpx;
+  font-weight: 500;
+  line-height: 30rpx;
+  text-align: center;
+  padding-bottom: 12rpx;
+}
+
 .add-btn {
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 88rpx;
-  height: 88rpx;
-  margin: -56rpx auto 12rpx;
+  width: 96rpx;
+  height: 96rpx;
+  margin: -56rpx auto 8rpx;
   padding: 0;
   border: 6rpx solid #fff;
   border-radius: 50%;
   color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 70rpx;
   font-weight: 400;
   line-height: 74rpx;
   box-shadow: 0 4rpx 16rpx rgba(17, 24, 39, 0.18);
-}
-
-.add-item {
-  color: #111827;
-  font-weight: 500;
 }

@@ -22,11 +22,9 @@ public class BudgetController {
 
     @GetMapping
     public ApiResponse<BudgetResponse> get(
-            @RequestHeader(value = "Authorization", required = false) String authorization,
-            @RequestParam int year,
-            @RequestParam int month
+            @RequestHeader(value = "Authorization", required = false) String authorization
     ) {
-        BudgetResponse budget = service.get(userId(authorization), year, month);
+        BudgetResponse budget = service.getGlobal(userId(authorization));
         return ApiResponse.success(budget);
     }
 
@@ -35,7 +33,7 @@ public class BudgetController {
             @RequestHeader(value = "Authorization", required = false) String authorization,
             @Valid @RequestBody BudgetRequest request
     ) {
-        return ApiResponse.success(service.upsert(userId(authorization), request));
+        return ApiResponse.success(service.upsertGlobal(userId(authorization), request));
     }
 
     private Long userId(String authorization) {
