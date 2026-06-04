@@ -1,0 +1,78 @@
+<view class="settings-page">
+  <view class="settings-header" style="background: {{themeColor}}">
+    <view class="header-title">设定</view>
+  </view>
+
+  <scroll-view scroll-y class="settings-body">
+    <view class="section">
+      <view class="section-title">主题色</view>
+      <view class="color-grid">
+        <view
+          wx:for="{{themeColors}}"
+          wx:key="value"
+          class="color-option {{selectedTheme === item.value ? 'active' : ''}}"
+          data-color="{{item.value}}"
+          bindtap="selectThemeColor"
+          style="background: {{item.value}}"
+        >
+          <view wx:if="{{selectedTheme === item.value}}" class="check-mark">&#10003;</view>
+          <view class="color-label">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">记账按钮颜色</view>
+      <view class="color-grid">
+        <view
+          wx:for="{{buttonColors}}"
+          wx:key="value"
+          class="color-option {{selectedButton === item.value ? 'active' : ''}}"
+          data-color="{{item.value}}"
+          bindtap="selectButtonColor"
+          style="background: {{item.value}}"
+        >
+          <view wx:if="{{selectedButton === item.value}}" class="check-mark">&#10003;</view>
+          <view class="color-label">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">每月预算</view>
+      <view class="budget-row">
+        <picker mode="date" fields="month" value="{{budgetYearMonth}}" bindchange="onBudgetDateChange">
+          <view class="budget-date">{{budgetYearMonth}} &#9662;</view>
+        </picker>
+        <input
+          class="budget-input"
+          type="digit"
+          placeholder="输入预算金额"
+          value="{{budgetAmount}}"
+          bindinput="onBudgetInput"
+          bindconfirm="saveBudget"
+        />
+        <view class="save-budget-btn" bindtap="saveBudget">保存</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom-bar">
+    <view class="nav-item" bindtap="openDetail">
+      <view class="nav-icon">&#9776;</view>
+      <view>明细</view>
+    </view>
+    <view class="nav-item add-item" bindtap="openAdd">
+      <view class="add-btn" style="background: {{buttonColor}}">+</view>
+      <view>记账</view>
+    </view>
+    <view class="nav-item" bindtap="openStatistics">
+      <view class="nav-icon">&#9637;</view>
+      <view>统计</view>
+    </view>
+    <view class="nav-item active">
+      <view class="nav-icon">&#9881;</view>
+      <view>设定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="header">
+    <view class="cancel"></view>
+    <view class="title"></view>
+    <view class="placeholder"></view>
+  </view>
+
+  <view class="type-tabs">
+    <view class="type-tab {{type === 'EXPENSE' ? 'active' : ''}}" data-type="EXPENSE" bindtap="switchType">支出</view>
+    <view class="type-tab {{type === 'INCOME' ? 'active' : ''}}" data-type="INCOME" bindtap="switchType">收入</view>
+  </view>
+
+  <view class="content {{useSystemKeyboard ? 'system-content' : ''}}">
+    <view class="category-grid">
+      <view
+        wx:for="{{categories}}"
+        wx:key="code"
+        class="category {{item.active ? 'active' : ''}}"
+        data-code="{{item.code}}"
+        bindtap="selectCategory"
+      >
+        <view class="category-icon">{{item.iconText}}</view>
+        <view class="category-name">{{item.name}}</view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="entry-panel {{useSystemKeyboard ? 'system-entry-panel' : ''}}">
+    <view class="amount-date-row">
+      <input
+        wx:if="{{useSystemKeyboard}}"
+        class="amount amount-input"
+        type="digit"
+        value="{{amountText}}"
+        bindinput="onAmountInput"
+        placeholder="0"
+      />
+      <view wx:else class="amount">{{amountText}}</view>
+      <picker class="date-picker" mode="date" value="{{recordDate}}" bindchange="onDateChange">
+        <view class="form-value">{{recordDateLabel}}</view>
+      </picker>
+    </view>
+
+    <view class="form">
+      <view class="remark-row">
+        <input
+          class="remark"
+          value="{{remark}}"
+          maxlength="255"
+          placeholder="备注：点击填写备注"
+          placeholder-class="placeholder-text"
+          bindinput="onRemarkInput"
+        />
+      </view>
+      <view wx:if="{{useSystemKeyboard}}" class="save-btn" bindtap="saveBill">完成</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!useSystemKeyboard}}" class="keyboard">
+    <view
+      wx:for="{{keys}}"
+      wx:key="*this"
+      class="key {{item === '完成' ? 'done' : ''}} {{item === '上一天' || item === '下一天' || item === '取消' ? 'action' : ''}}"
+      data-key="{{item}}"
+      bindtap="onKeyTap"
+    >
+      {{item}}
+    </view>
+  </view>
+</view>

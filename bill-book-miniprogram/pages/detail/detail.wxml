@@ -1,0 +1,155 @@
+<view class="page">
+  <view class="hero" style="background: {{themeColor}}">
+    <view class="top-row">
+      <view class="month-switch">
+        <view class="switch-btn" bindtap="prevMonth">&#8249;</view>
+        <text class="month-label">{{year}}年 {{month}}月</text>
+        <view class="switch-btn" bindtap="nextMonth">&#8250;</view>
+      </view>
+    </view>
+
+    <view class="summary">
+      <view
+        class="summary-item {{typeFilter === 'INCOME' ? 'active' : ''}}"
+        data-type="INCOME"
+        bindtap="toggleTypeFilter"
+      >
+        <text class="label">收入</text>
+        <text class="value">{{monthIncome}}</text>
+      </view>
+      <view class="divider"></view>
+      <view
+        class="summary-item {{typeFilter === 'EXPENSE' ? 'active' : ''}}"
+        data-type="EXPENSE"
+        bindtap="toggleTypeFilter"
+      >
+        <text class="label">{{monthlyBudget ? '支出/预算' : '支出'}}</text>
+        <text class="value">{{monthlyBudget ? monthExpense + '/' + budgetText : monthExpense}}</text>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view
+    scroll-y
+    class="list"
+    bindscrolltolower="onScrollToLower"
+    bindtouchstart="onListTouchStart"
+    bindtouchend="onListTouchEnd"
+  >
+    <block wx:for="{{days}}" wx:key="date">
+      <view class="day-head">
+        <text>{{item.dateLabel}}</text>
+        <view class="day-summary">
+          <text wx:if="{{item.dayExpenseText !== '0'}}">支出:{{item.dayExpenseText}}</text>
+          <text wx:if="{{item.dayIncomeText !== '0'}}">收入:{{item.dayIncomeText}}</text>
+        </view>
+      </view>
+
+      <view class="record-list">
+        <view
+          wx:for="{{item.items}}"
+          wx:for-item="bill"
+          wx:key="id"
+          class="record"
+          data-id="{{bill.id}}"
+          data-pending="{{bill.pending}}"
+          bindtap="openEdit"
+          bindlongpress="showBillActions"
+        >
+          <view class="icon">{{bill.iconText}}</view>
+          <view class="record-main">
+            <view class="record-title">{{bill.recordTitle}}</view>
+          </view>
+          <view class="record-side">
+            <view class="amount {{bill.amountClass}}">{{bill.amountText}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{days.length === 0 && !loading}}" class="empty-hint">暂无数据</view>
+    <view wx:if="{{days.length > 0}}" class="list-footer">没有更多了</view>
+  </scroll-view>
+
+  <view class="bottom-bar">
+    <view class="nav-item active">
+      <view class="nav-icon">&#9776;</view>
+      <view>明细</view>
+    </view>
+    <view class="nav-item add-item" bindtap="openAdd">
+      <view class="add-btn" style="background: {{buttonColor}}">+</view>
+      <view>记账</view>
+    </view>
+    <view class="nav-item" bindtap="openStatistics">
+      <view class="nav-icon">&#9637;</view>
+      <view>统计</view>
+    </view>
+    <view class="nav-item" bindtap="openSettings">
+      <view class="nav-icon">&#9881;</view>
+      <view>设定</view>
+    </view>
+  </view>
+
+  <block wx:if="{{editingVisible}}">
+  <view class="editor">
+    <view class="editor-header" style="background: {{themeColor}}">
+      <view></view>
+      <view></view>
+      <view></view>
+    </view>
+
+    <view class="editor-tabs" style="background: {{themeColor}}">
+      <view class="editor-tab {{editType === 'EXPENSE' ? 'active' : ''}}" data-type="EXPENSE" bindtap="switchEditType">支出</view>
+      <view class="editor-tab {{editType === 'INCOME' ? 'active' : ''}}" data-type="INCOME" bindtap="switchEditType">收入</view>
+    </view>
+
+    <view class="editor-content">
+      <view class="editor-category-grid">
+        <view
+          wx:for="{{editCategories}}"
+          wx:key="code"
+          class="editor-category {{item.active ? 'active' : ''}}"
+          data-code="{{item.code}}"
+          bindtap="selectEditCategory"
+        >
+          <view class="editor-category-icon" style="{{item.active ? 'background: ' + themeColor : ''}}">{{item.iconText}}</view>
+          <view class="editor-category-name">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="editor-entry">
+      <view class="editor-remark-row">
+        <input
+          class="editor-remark"
+          value="{{remark}}"
+          maxlength="255"
+          placeholder="备注：点击填写备注"
+          placeholder-class="placeholder-text"
+          bindinput="onEditRemarkInput"
+        />
+      </view>
+
+      <view class="editor-amount-row">
+        <view class="editor-amount">{{amountText}}</view>
+        <picker class="editor-date-picker" mode="date" value="{{recordDate}}" bindchange="onEditDateChange">
+          <view class="editor-date">{{recordDateLabel}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="editor-keyboard">
+      <view
+        wx:for="{{keys}}"
+        wx:key="*this"
+        class="editor-key {{item === '完成' ? 'done' : ''}} {{item === '上一天' ? 'action' : ''}} {{item === '下一天' ? 'action' : ''}} {{item === '取消' ? 'action' : ''}}"
+        data-key="{{item}}"
+        bindtap="onEditKeyTap"
+        style="{{item === '完成' ? 'background: ' + themeColor : ''}}"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+  </block>
+</view>

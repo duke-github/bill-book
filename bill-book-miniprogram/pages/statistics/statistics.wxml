@@ -1,0 +1,71 @@
+<view class="stats-page">
+  <view class="stats-header">
+    <view class="year-switch">
+      <view class="year-btn" bindtap="prevYear">&#8249;</view>
+      <view class="year-label">{{year}}年</view>
+      <view class="year-btn" bindtap="nextYear">&#8250;</view>
+    </view>
+  </view>
+
+  <view class="summary-card" style="background: {{themeColor}}">
+    <view class="summary-mark">&#165;</view>
+    <view class="summary-label">结余</view>
+    <view class="summary-balance">{{totalBalance}}</view>
+    <view class="summary-row">
+      <view class="summary-mini">
+        <view class="mini-label">收入</view>
+        <view class="mini-value">{{totalIncome}}</view>
+      </view>
+      <view class="summary-line"></view>
+      <view class="summary-mini">
+        <view class="mini-label">支出</view>
+        <view class="mini-value">{{totalExpense}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="table-head">
+    <view>月份</view>
+    <view>月收入</view>
+    <view>月支出</view>
+    <view>月结余</view>
+  </view>
+
+  <scroll-view scroll-y class="table-body">
+    <view wx:if="{{loading}}" class="empty">加载中</view>
+    <block wx:else>
+      <view wx:if="{{months.length === 0}}" class="empty">该年暂无数据</view>
+      <view
+        wx:for="{{months}}"
+        wx:key="month"
+        class="month-row"
+        data-month="{{item.month}}"
+        bindtap="onMonthDoubleTap"
+      >
+        <view>{{item.month}}月</view>
+        <view>{{item.incomeText}}</view>
+        <view>{{item.expenseText}}</view>
+        <view class="{{item.balanceClass}}">{{item.balanceText}}</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="bottom-bar">
+    <view class="nav-item" bindtap="openDetail">
+      <view class="nav-icon">&#9776;</view>
+      <view>明细</view>
+    </view>
+    <view class="nav-item add-item" bindtap="openAdd">
+      <view class="add-btn" style="background: {{buttonColor}}">+</view>
+      <view>记账</view>
+    </view>
+    <view class="nav-item active">
+      <view class="nav-icon">&#9637;</view>
+      <view>统计</view>
+    </view>
+    <view class="nav-item" bindtap="openSettings">
+      <view class="nav-icon">&#9881;</view>
+      <view>设定</view>
+    </view>
+  </view>
+</view>

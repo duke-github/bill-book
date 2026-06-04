@@ -1,0 +1,30 @@
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Maven
+target/
+*.jar
+*.war
+
+# Node / miniprogram
+node_modules/
+miniprogram_npm/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+application-local.yml
+
+# Private config
+project.private.config.json

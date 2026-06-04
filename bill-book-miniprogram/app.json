@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/detail/detail",
+    "pages/statistics/statistics",
+    "pages/edit/edit",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#f6f6f6",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
