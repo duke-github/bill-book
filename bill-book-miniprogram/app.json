@@ -2,6 +2,7 @@
   "pages": [
     "pages/detail/detail",
     "pages/statistics/statistics",
+    "pages/month-stats/month-stats",
     "pages/edit/edit",
     "pages/settings/settings"
   ],

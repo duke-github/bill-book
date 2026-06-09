@@ -1,0 +1,277 @@
+.page {
+  height: 100vh;
+  background: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.ms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 88rpx 32rpx 16rpx;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.ms-back {
+  width: 72rpx;
+  color: #111827;
+  font-size: 44rpx;
+  line-height: 44rpx;
+}
+
+.ms-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ms-placeholder {
+  width: 72rpx;
+}
+
+/* Summary */
+.ms-summary {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 20rpx 28rpx;
+  flex-shrink: 0;
+}
+
+.ms-summary-item {
+  flex: 1;
+  text-align: center;
+}
+
+.ms-summary-label {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.ms-summary-val {
+  margin-top: 6rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #111827;
+}
+
+.ms-summary-val.income-val {
+  color: #0f9f6e;
+}
+
+.ms-summary-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* Type Tabs */
+.ms-type-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 48rpx;
+  padding: 20rpx 0 16rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #edf0f2;
+  flex-shrink: 0;
+}
+
+.ms-type-tab {
+  font-size: 30rpx;
+  color: #9ca3af;
+  padding-bottom: 12rpx;
+  position: relative;
+}
+
+.ms-type-tab.active {
+  color: #111827;
+  font-weight: 600;
+}
+
+.ms-type-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48rpx;
+  height: 4rpx;
+  background: #111827;
+  border-radius: 2rpx;
+}
+
+/* Category Scroll */
+.ms-cat-scroll {
+  white-space: nowrap;
+  background: #fff;
+  padding: 20rpx 0;
+  flex-shrink: 0;
+  border-bottom: 1rpx solid #edf0f2;
+}
+
+.ms-cat-row {
+  display: inline-flex;
+  padding: 0 24rpx;
+  gap: 20rpx;
+}
+
+.ms-cat-pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140rpx;
+  padding: 16rpx 20rpx 14rpx;
+  border-radius: 16rpx;
+  background: #f5f6f8;
+  border: 2rpx solid #f5f6f8;
+  flex-shrink: 0;
+}
+
+.ms-cat-pill.pill-active {
+  border-color: #111827;
+  background: #f0faf8;
+}
+
+.ms-cat-pill-icon {
+  font-size: 36rpx;
+  line-height: 44rpx;
+}
+
+.ms-cat-pill-name {
+  font-size: 24rpx;
+  color: #374151;
+  margin-top: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140rpx;
+}
+
+.ms-cat-pill-amount {
+  font-size: 22rpx;
+  color: #6b7280;
+  margin-top: 4rpx;
+}
+
+.pill-active .ms-cat-pill-name {
+  color: #111827;
+  font-weight: 600;
+}
+
+.pill-active .ms-cat-pill-amount {
+  color: #111827;
+}
+
+/* Selected Category Info */
+.ms-selected-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 32rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #edf0f2;
+  flex-shrink: 0;
+}
+
+.ms-selected-left {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.ms-selected-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+}
+
+.ms-selected-percent {
+  font-size: 24rpx;
+  color: #9ca3af;
+}
+
+.ms-selected-total {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Bill List */
+.ms-bill-list {
+  flex: 1;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.ms-date-header {
+  padding: 20rpx 32rpx 8rpx;
+  font-size: 24rpx;
+  color: #9ca3af;
+  background: #fafafa;
+  border-bottom: 1rpx solid #f0f1f3;
+}
+
+.ms-bill-item {
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx;
+  min-height: 100rpx;
+  border-bottom: 1rpx solid #f5f6f8;
+}
+
+.ms-bill-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #f1f2f4;
+  font-size: 28rpx;
+  line-height: 56rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.ms-bill-title {
+  flex: 1;
+  font-size: 30rpx;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-bill-amount {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.ms-bill-amount.income {
+  color: #0f9f6e;
+}
+
+.ms-bill-amount.expense {
+  color: #111827;
+}
+
+/* States */
+.ms-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 28rpx;
+}
+
+.ms-empty {
+  padding: 80rpx 0;
+  color: #9ca3af;
+  font-size: 26rpx;
+  text-align: center;
+}

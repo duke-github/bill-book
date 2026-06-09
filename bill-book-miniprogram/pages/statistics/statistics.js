@@ -128,8 +128,8 @@ Page({
     const now = Date.now()
     if (now - this._lastMonthTapTime < 400) {
       this._lastMonthTapTime = 0
-      wx.redirectTo({
-        url: '/pages/detail/detail?year=' + this.data.year + '&month=' + month
+      wx.navigateTo({
+        url: '/pages/month-stats/month-stats?year=' + this.data.year + '&month=' + month
       })
     } else {
       this._lastMonthTapTime = now

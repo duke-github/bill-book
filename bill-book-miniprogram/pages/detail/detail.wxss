@@ -266,6 +266,8 @@
   left: 0;
   z-index: 100;
   background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .editor-header {
@@ -274,6 +276,7 @@
   justify-content: space-between;
   height: 152rpx;
   padding: 70rpx 32rpx 0;
+  flex-shrink: 0;
 }
 
 .editor-tabs {
@@ -283,6 +286,7 @@
   height: 94rpx;
   padding-top: 22rpx;
   border-radius: 0 0 28rpx 28rpx;
+  flex-shrink: 0;
 }
 
 .editor-tab {
@@ -300,8 +304,8 @@
 }
 
 .editor-content {
-  height: auto;
-  overflow: hidden;
+  flex: 1;
+  overflow-y: auto;
   background: #fff;
 }
 
@@ -349,6 +353,8 @@
   position: relative;
   z-index: 105;
   background: #fff;
+  margin-bottom: calc(366rpx + env(safe-area-inset-bottom));
+  border-top: 1rpx solid #f0f1f3;
 }
 
 .editor-amount-row {

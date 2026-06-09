@@ -1,0 +1,76 @@
+<view class="page">
+  <!-- Header -->
+  <view class="ms-header">
+    <view class="ms-back" bindtap="goBack">‹</view>
+    <view class="ms-title">{{year}}年{{month}}月</view>
+    <view class="ms-placeholder"></view>
+  </view>
+
+  <!-- Summary -->
+  <view class="ms-summary" style="background: {{themeColor}}">
+    <view class="ms-summary-item">
+      <view class="ms-summary-label">收入</view>
+      <view class="ms-summary-val income-val">{{monthIncome}}</view>
+    </view>
+    <view class="ms-summary-divider"></view>
+    <view class="ms-summary-item">
+      <view class="ms-summary-label">支出</view>
+      <view class="ms-summary-val">{{monthExpense}}</view>
+    </view>
+    <view class="ms-summary-divider"></view>
+    <view class="ms-summary-item">
+      <view class="ms-summary-label">结余</view>
+      <view class="ms-summary-val">{{totalBalance}}</view>
+    </view>
+  </view>
+
+  <!-- Type Tabs -->
+  <view class="ms-type-tabs">
+    <view class="ms-type-tab {{activeType === 'EXPENSE' ? 'active' : ''}}" data-type="EXPENSE" bindtap="switchType">支出</view>
+    <view class="ms-type-tab {{activeType === 'INCOME' ? 'active' : ''}}" data-type="INCOME" bindtap="switchType">收入</view>
+  </view>
+
+  <!-- Horizontal Category Scroll -->
+  <scroll-view scroll-x class="ms-cat-scroll" wx:if="{{hasData && activeCategories.length > 0}}">
+    <view class="ms-cat-row">
+      <view
+        wx:for="{{activeCategories}}"
+        wx:key="code"
+        class="ms-cat-pill {{item.active ? 'pill-active' : ''}}"
+        data-code="{{item.code}}"
+        bindtap="selectCategory"
+        style="{{item.active ? 'background:' + themeColor + '; border-color:' + themeColor : ''}}"
+      >
+        <view class="ms-cat-pill-icon">{{item.iconText}}</view>
+        <view class="ms-cat-pill-name">{{item.name}}</view>
+        <view class="ms-cat-pill-amount">{{item.amountText}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Selected Category Info -->
+  <view class="ms-selected-info" wx:if="{{selectedCode}}">
+    <view class="ms-selected-left">
+      <text class="ms-selected-name">{{selectedName}}</text>
+      <text class="ms-selected-percent">{{selectedPercent}}</text>
+    </view>
+    <view class="ms-selected-total">¥{{selectedTotal}}</view>
+  </view>
+
+  <!-- Bill List -->
+  <view class="ms-bill-list" wx:if="{{hasData}}">
+    <block wx:for="{{currentBills}}" wx:key="id">
+      <view wx:if="{{item.showDateHeader}}" class="ms-date-header">{{item.dateLabel}}</view>
+      <view class="ms-bill-item">
+        <view class="ms-bill-icon">{{item.iconText}}</view>
+        <view class="ms-bill-title">{{item.recordTitle}}</view>
+        <view class="ms-bill-amount {{item.amountClass}}">{{item.amountText}}</view>
+      </view>
+    </block>
+    <view wx:if="{{currentBills.length === 0}}" class="ms-empty">该分类暂无记录</view>
+  </view>
+
+  <!-- Loading / Empty States -->
+  <view wx:if="{{loading}}" class="ms-state">加载中...</view>
+  <view wx:if="{{!hasData && !loading}}" class="ms-state">暂无数据</view>
+</view>
